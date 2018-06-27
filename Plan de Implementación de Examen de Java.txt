@@ -1,0 +1,40 @@
+Tareas pendientes para examen de java:
+
+- Front End:
+	- Terminar formulario de postulación.------------------------------------------------------> Cristobal
+
+	- Crear formulario de creación de usuario y link en página de login.-----------------------> Cristobal
+
+	- Crear menú sidebar.----------------------------------------------------------------------> Gabriel
+
+	- Crear visualización de mensaje de estado de solicitud.-----------------------------------> Gabriel
+
+	- Terminar CRUD de postulación:
+		- Crear Tabla de postulaciones.--------------------------------------------------------> Cristobal(empieza) /Gabriel(termina)
+		- Crear visualización de datos de postulación.-----------------------------------------> Cristobal
+		- Crear formulario de Modificación de postulaciones.-----------------------------------> Cristobal
+		- Crear formulario de Eliminación de postulaciones.------------------------------------> Cristobal 
+		
+	- Agregar a tabla de postulaciones link de funcionalidad de aprobación de postulaciones.---> Gabriel
+
+	- Crear formulario de Búsqueda.------------------------------------------------------------> Gabriel
+	
+	- Implementar Bootstrap y CSS pa que todo quede bonito.------------------------------------> Gabriel / Cristobal (cuando te enseñe)
+	
+	- Agregar validaciones a nivel de JavaScript.----------------------------------------------> Gabriel
+	
+- Back End:
+	- Linkear tabla login con tabla postulación (?).-------------------------------------------> Gabriel
+	
+	- Terminar lógica del Bean de postulación:
+		- Terminar creación de postulación.----------------------------------------------------> Gabriel
+		- Crear lógica de: lista, rescate individual y búsqueda de postulaciones.--------------> Gabriel
+		
+	- Terminar lógica del Bean de login:
+		- Agregar atributo boolean de admin.---------------------------------------------------> Cristobal
+		- Crear lógica de creación.------------------------------------------------------------> Cristobal
+
+	- Crear los DAOs para todas las clases.----------------------------------------------------> Cristobal
+
+	- Hacer webservice con oracle.-------------------------------------------------------------> Gabriel
+
