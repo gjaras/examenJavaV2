@@ -17,8 +17,8 @@
                 Apellido Materno :<h:inputText value="#{postulacionBean.postulanteApema}"></h:inputText><br/>
                 Fecha de Nacimiento: <h:inputText value="#{postulacionBean.postulanteFecnac}" id="datepicker"></h:inputText><br/>
                 Sexo :<h:selectOneRadio value = "#{postulacionBean.postulanteSexo}"> 
-                    <f:selectItem itemValue = "F " itemLabel = "F" />
-                    <f:selectItem itemValue = "M " itemLabel = "M" />
+                    <f:selectItem itemValue = "F" itemLabel = "F" />
+                    <f:selectItem itemValue = "M" itemLabel = "M" />
                 </h:selectOneRadio><br/>
                 
                 Estado Civil :<h:selectOneMenu id="selMenu2">
@@ -28,7 +28,7 @@
                 
                 
                  
-                Hijos : <h:selectBooleanCheckbox value = "#postulacionBean.postulanteEnfermedad" id = "chkRememberMe" /> 
+                Hijos : <h:selectBooleanCheckbox id = "chkRememberMe" onclick="esto()" /> 
                  <h:inputText id="hijos" value="" maxlength="2" converter="javax.faces.Integer" disabled="true"/>
                 <!--Si<h:selectBooleanCheckbox id="existing" value="" onclick="esto()"/>
                 <h:inputText id="hijos" value="#postulacionBean.postulanteHijos()}" maxlength="4" converter="javax.faces.Integer" disabled="true"/>
@@ -63,8 +63,7 @@
             
             <br/>
             
-            Padece enfermedad enfermedad cronica: 
-            <h:selectBooleanCheckbox value = "#postulacionBean.postulanteEnfermedad" id = "chkRememberMe" />
+            Padece enfermedad enfermedad cronica: <h:selectBooleanCheckbox value = "#postulacionBean.postulanteEnfermedad" id = "chkEnfermedad" />
             <h:selectManyCheckbox value="#{postulacionBean.postulanteEnfermedad}">
    			<f:selectItems value="t" />
             </h:selectManyCheckbox>
@@ -80,9 +79,13 @@
                     $("#postulaForm\\:datepicker").datepicker()
                 });
                 function esto() {
-                    document.getElementById(hijos).disabled = false
+                    if( $("#postulaForm\\:hijos").disabled){
+                        $("#postulaForm\\:hijos").disabled = false
+                    }else{
+                        $("#postulaForm\\:hijos").disabled = false
+                    }
                 }
-            </script>3
+            </script>
             <h:link outcome="/Inicio" value="Menu Principal"></h:link>
         </ui:define>
     </ui:composition>

@@ -66,11 +66,13 @@ public class postulacionBean implements Serializable{
     }
 ////GET
     
-    public String getPostulanteNombre(String rutPostulante){
+    public String getPostulanteXRut(String rutPostulante){
         postulacionDAO pd = new postulacionDAO();
         Postulante pos = pd.getPostulante(rutPostulante);
         return pos.getPostulanteNombre();
-    } 
+    }
+    
+    
 //LISTAR
     public SelectItem[] listPostulante(){
         postulacionDAO pt = new postulacionDAO();
@@ -216,14 +218,6 @@ public class postulacionBean implements Serializable{
         this.renta = renta;
     }
 
-    public String getPostulanteNombre() {
-        return postulanteNombre;
-    }
-
-    public void setPostulanteNombre(String postulanteNombre) {
-        this.postulanteNombre = postulanteNombre;
-    }
-
     public String getPostulanteApepa() {
         return postulanteApepa;
     }
@@ -302,6 +296,20 @@ public class postulacionBean implements Serializable{
 
     public void setPostulanteEnfermedad(char postulanteEnfermedad) {
         this.postulanteEnfermedad = postulanteEnfermedad;
+    }
+
+    /**
+     * @return the postulanteNombre
+     */
+    public String getPostulanteNombre() {
+        return postulanteNombre;
+    }
+
+    /**
+     * @param postulanteNombre the postulanteNombre to set
+     */
+    public void setPostulanteNombre(String postulanteNombre) {
+        this.postulanteNombre = postulanteNombre;
     }
 
 
