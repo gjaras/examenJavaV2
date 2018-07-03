@@ -7,8 +7,8 @@
         <ui:define name="sidebar"></ui:define>
         <ui:define name="title">Login</ui:define>
         <ui:define name="body">
-            <h:outputText value="#{loginBean.nombre}"></h:outputText>
-            <h:form>
+            <h3><h:outputText value="#{loginBean.nombre}"></h:outputText></h3>
+            <h:form><br/>
                 nombre <h:inputText value="#{loginBean.nombre}"></h:inputText><br/>
                 password <h:inputText value="#{loginBean.password}"></h:inputText><br/>
                 <h:commandLink value="ingresar" action="#{loginBean.Login()}"></h:commandLink>

@@ -6,10 +6,10 @@
     <ui:composition template="/template.xhtml">
         <ui:define name="title">Inicio</ui:define>
         <ui:define name="body">
-             <h:outputText value="Bienvenido: #{loginBean.nombre}"></h:outputText>
-            <h:link outcome="/Postulacion" value="postular"></h:link><br />
-            <h:link outcome="/Eliminar" value="eliminar"></h:link><br />
-            <h:link outcome="/Editar" value="editar"></h:link><br />
+            <h3> <h:outputText value="Bienvenido: #{loginBean.nombre}"></h:outputText></h3><br />
+            <h:link outcome="/Postulacion" value="Postular"></h:link><br />
+            <h:link outcome="/Eliminar" value="Eliminar"></h:link><br />
+            <h:link outcome="/Editar" value="Editar "></h:link><br />
         </ui:define>
     </ui:composition>
 </html>

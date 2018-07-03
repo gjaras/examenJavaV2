@@ -13,13 +13,11 @@
             <h:form id="postulaForm">
                Selecionar  Postulante a Editar:
                 <h:selectOneMenu id="selMenu2">
-                    <f:selectItems value="#{postulacionBean.listPostulantes()}"/>
+                    <f:selectItems value="#{postulacionBean.listPostulantes().}"/>
                 </h:selectOneMenu>
                 <br/>
-              
-            
-            
-                <h:commandLink value="Eliminar" action="#postulacionBean.addPostulante()"></h:commandLink>
+
+                <h:commandLink value="Eliminar" action="#{postulacionBean.updatePostulante()}"></h:commandLink>
             </h:form>
             
             <h:link outcome="/Inicio" value="Menu Principal"></h:link>
