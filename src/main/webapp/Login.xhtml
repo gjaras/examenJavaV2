@@ -10,7 +10,7 @@
             <h3><h:outputText value="#{loginBean.nombre}"></h:outputText></h3>
             <h:form><br/>
                 nombre <h:inputText value="#{loginBean.nombre}"></h:inputText><br/>
-                password <h:inputText value="#{loginBean.password}"></h:inputText><br/>
+                password <h:inputSecret value="#{loginBean.password}"></h:inputSecret><br/>
                 <h:commandLink value="ingresar" action="#{loginBean.Login()}"></h:commandLink>
 
             </h:form>

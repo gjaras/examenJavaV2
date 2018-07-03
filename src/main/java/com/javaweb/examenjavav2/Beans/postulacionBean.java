@@ -70,9 +70,34 @@ public class postulacionBean implements Serializable{
         postulacionDAO pd = new postulacionDAO();
         Postulante pos = pd.getPostulante(rutPostulante);
         return pos.getPostulanteNombre();
+    } 
+////GETSAA
+    
+    public String getPostulante(){
+        postulacionDAO pd = new postulacionDAO();
+        Postulante pos = pd.getPostulante(getPostulanteRut());
+        setPostulanteNombre(pos.getPostulanteNombre());
+        setPostulanteRut(pos.getPostulanteRut()); 
+        setPostulanteDv(pos.getPostulanteDv());
+        setComuna(pos.getComuna());
+        setEducacion(pos.getEducacion());
+        setEstadocivil(pos.getEstadocivil()); 
+        setRenta(pos.getRenta());
+        setPostulanteApema(pos.getPostulanteApema());
+        setPostulanteApepa(pos.getPostulanteApepa());
+        setPostulanteFecnac(pos.getPostulanteFecnac());
+        setPostulanteSexo(pos.getPostulanteSexo());
+        setPostulanteHijos(pos.getPostulanteHijos());
+        setPostulanteTelefono(pos.getPostulanteTelefono());
+        setPostulanteDireccion(pos.getPostulanteDireccion());
+        setPostulanteEmail(pos.getPostulanteEmail());
+        setPostulanteSueldo(pos.getPostulanteSueldo());
+        setPostulanteEnfermedad(pos.getPostulanteEnfermedad());
+        
+        return "Editar_1.xhtml";
+        
     }
-    
-    
+
 //LISTAR
     public SelectItem[] listPostulante(){
         postulacionDAO pt = new postulacionDAO();
@@ -164,11 +189,12 @@ public class postulacionBean implements Serializable{
         return ptl;
     }
 ////ELIMINAR
-//    public void deleteProducto(Producto producto){
-//        Producto p = new Producto(getIdProducto());
-//        ProductoDAO pd = new ProductoDAO();
-//        pd.deleteProducto(p);
-//    }
+    public void deletePostulante(){
+        Postulante p = new Postulante();
+        p.setPostulanteRut(getPostulanteRut());
+        postulacionDAO pd = new postulacionDAO();
+        pd.deletePostulante(p);
+    }
 
    public char getPostulanteDv() {
         return postulanteDv;
@@ -216,6 +242,14 @@ public class postulacionBean implements Serializable{
 
     public void setRenta(Renta renta) {
         this.renta = renta;
+    }
+
+    public String getPostulanteNombre() {
+        return postulanteNombre;
+    }
+
+    public void setPostulanteNombre(String postulanteNombre) {
+        this.postulanteNombre = postulanteNombre;
     }
 
     public String getPostulanteApepa() {
@@ -296,20 +330,6 @@ public class postulacionBean implements Serializable{
 
     public void setPostulanteEnfermedad(char postulanteEnfermedad) {
         this.postulanteEnfermedad = postulanteEnfermedad;
-    }
-
-    /**
-     * @return the postulanteNombre
-     */
-    public String getPostulanteNombre() {
-        return postulanteNombre;
-    }
-
-    /**
-     * @param postulanteNombre the postulanteNombre to set
-     */
-    public void setPostulanteNombre(String postulanteNombre) {
-        this.postulanteNombre = postulanteNombre;
     }
 
 

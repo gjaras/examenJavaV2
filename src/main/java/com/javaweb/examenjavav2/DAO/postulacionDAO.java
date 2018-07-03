@@ -106,7 +106,7 @@ public class postulacionDAO {
         return retorno;
     }
 //ELIMINAR
-    public void deleteProducto(Postulante postulante){
+    public void deletePostulante(Postulante postulante){
         Transaction tx =null;
         Session s = HibernateUtil.getSessionFactory().openSession();
         tx= s.beginTransaction();

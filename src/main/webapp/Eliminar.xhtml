@@ -12,14 +12,14 @@
         <ui:define name="body">
             <h:form id="postulaForm">
                Selecionar  Postulante a Eliminar:
-                <h:selectOneMenu id="selMenu2">
-                    <f:selectItems value="#{postulacionBean.listPostulantes()}"/>
+               <h:selectOneMenu id="selMenu2" value="#{postulacionBean.postulanteRut}">
+                    <f:selectItems value="#{postulacionBean.listPostulantes()}" var="item" itemLabel="#{item.getPostulanteRut()}" itemValue="#{item.getPostulanteRut()}"/>
                 </h:selectOneMenu>
                 <br/>
               
             
             
-                <h:commandLink value="Eliminar" action="#postulacionBean.addPostulante()"></h:commandLink>
+                <h:commandLink value="Eliminar" action="#{postulacionBean.deletePostulante()}"></h:commandLink>
             </h:form>
             
             <h:link outcome="/Inicio" value="Menu Principal"></h:link>

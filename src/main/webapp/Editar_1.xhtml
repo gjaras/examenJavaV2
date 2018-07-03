@@ -8,17 +8,18 @@
       >
     <ui:composition template="/template.xhtml">
         <ui:define name="sidebar"></ui:define>
-        <ui:define name="title">Postulacion trabajo</ui:define>
+        <ui:define name="title">Editar Postulacion trabajo</ui:define>
         <ui:define name="body">
             <h:form id="postulaForm">
-                Rut Postulante:<h:inputText value="#{postulacionBean.postulanteRut}"></h:inputText>-<h:inputText size="1" value="#{postulacionBean.postulanteDv}"></h:inputText><br/>
+               
+                Rut Postulante:<h:inputText value="#{postulacionBean.postulanteRut}" readonly="true" ></h:inputText>-<h:inputText size="1" value="#{postulacionBean.postulanteDv}" readonly="true"></h:inputText><br/>
                 Nombre :<h:inputText value="#{postulacionBean.postulanteNombre}"></h:inputText><br/>
                 Apellido Paterno :<h:inputText value="#{postulacionBean.postulanteApepa}"></h:inputText><br/>
                 Apellido Materno :<h:inputText value="#{postulacionBean.postulanteApema}"></h:inputText><br/>
                 Fecha de Nacimiento: <h:inputText value="#{postulacionBean.postulanteFecnac}" id="datepicker"></h:inputText><br/>
                 Sexo :<h:selectOneRadio value = "#{postulacionBean.postulanteSexo}"> 
-                    <f:selectItem itemValue = "F" itemLabel = "F" />
-                    <f:selectItem itemValue = "M" itemLabel = "M" />
+                    <f:selectItem itemValue = "F " itemLabel = "F" />
+                    <f:selectItem itemValue = "M " itemLabel = "M" />
                 </h:selectOneRadio><br/>
                 
                 Estado Civil :<h:selectOneMenu id="selMenu2">
@@ -28,7 +29,7 @@
                 
                 
                  
-                Hijos : <h:selectBooleanCheckbox id = "chkRememberMe" onclick="esto()" /> 
+                Hijos : <h:selectBooleanCheckbox value = "#postulacionBean.postulanteEnfermedad" id = "chkRememberMe" /> 
                  <h:inputText id="hijos" value="" maxlength="2" converter="javax.faces.Integer" disabled="true"/>
                 <!--Si<h:selectBooleanCheckbox id="existing" value="" onclick="esto()"/>
                 <h:inputText id="hijos" value="#postulacionBean.postulanteHijos()}" maxlength="4" converter="javax.faces.Integer" disabled="true"/>
@@ -63,29 +64,19 @@
             
             <br/>
             
-            Padece enfermedad enfermedad cronica: <h:selectBooleanCheckbox value = "#postulacionBean.postulanteEnfermedad" id = "chkEnfermedad" />
+            Padece enfermedad enfermedad cronica: 
+            <h:selectBooleanCheckbox value = "#postulacionBean.postulanteEnfermedad" id = "chkRememberMe" />
             <h:selectManyCheckbox value="#{postulacionBean.postulanteEnfermedad}">
-                <f:selectItems itemLabel="Si" itemValue="S" />
+   			<f:selectItems value="t" />
             </h:selectManyCheckbox>
                  
             
             
             
             
-                <h:commandLink value="Grabar" action="#{postulacionBean.insertPostulacion()}"></h:commandLink>
+            <h:commandLink value="Grabar" action="#{postulacionBean.updatePostulante()}"></h:commandLink>
             </h:form>
-            <script>
-                $(document).ready(function () {
-                    $("#postulaForm\\:datepicker").datepicker()
-                });
-                function esto() {
-                    if( $("#postulaForm\\:hijos").disabled){
-                        $("#postulaForm\\:hijos").disabled = false
-                    }else{
-                        $("#postulaForm\\:hijos").disabled = false
-                    }
-                }
-            </script>
+            
             <h:link outcome="/Inicio" value="Menu Principal"></h:link>
         </ui:define>
     </ui:composition>
