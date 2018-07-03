@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 3, 2018 12:12:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.javaweb.examenjavav2.POJOS.Usuario" table="usuario" catalog="postulacion" optimistic-lock="version">
+        <id name="usuarioId" type="java.lang.Integer">
+            <column name="usuario_id" />
+            <generator class="identity" />
+        </id>
+        <property name="usuarioNombre" type="string">
+            <column name="usuario_nombre" length="25" not-null="true" />
+        </property>
+        <property name="usuarioPass" type="string">
+            <column name="usuario_pass" length="25" not-null="true" />
+        </property>
+        <property name="usuarioRoladm" type="char">
+            <column name="usuario_roladm" length="1" not-null="true" />
+        </property>
+        <set name="postulantes" table="postulante" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_usuario_id" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.examenjavav2.POJOS.Postulante" />
+        </set>
+    </class>
+</hibernate-mapping>
