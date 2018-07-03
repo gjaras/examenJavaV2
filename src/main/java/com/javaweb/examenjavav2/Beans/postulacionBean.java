@@ -92,7 +92,7 @@ public class postulacionBean implements Serializable{
         setPostulanteDireccion(pos.getPostulanteDireccion());
         setPostulanteEmail(pos.getPostulanteEmail());
         setPostulanteSueldo(pos.getPostulanteSueldo());
-        setPostulanteEnfermedad(pos.getPostulanteEnfermedad());
+        setPostulanteEnfermedad(pos.getPostulanteEnfermedad() == 's');
         
         return "Editar_1.xhtml";
         
