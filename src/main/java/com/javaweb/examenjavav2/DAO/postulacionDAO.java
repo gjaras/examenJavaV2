@@ -9,7 +9,6 @@ import com.javaweb.examenjavav2.POJOS.Comuna;
 import com.javaweb.examenjavav2.POJOS.Educacion;
 import com.javaweb.examenjavav2.POJOS.Estadocivil;
 import com.javaweb.examenjavav2.POJOS.Postulante;
-import com.javaweb.examenjavav2.POJOS.Usuario;
 import com.javaweb.examenjavav2.POJOS.Renta;
 import com.javaweb.examenjavav2.util.HibernateUtil;
 import java.util.List;

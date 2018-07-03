@@ -5,18 +5,16 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="/template.xhtml">
         <ui:define name="sidebar"></ui:define>
-        <ui:define name="title">Login</ui:define>
+        <ui:define name="title">cREAR USUARIO</ui:define>
         <ui:define name="body">
-            <h3><h:outputText value="Login"></h:outputText></h3>
-            <br/>
-            <h:outputText value="#{loginBean.message}" style="color: red"></h:outputText>
+            <h3><h:outputText value="Crear Usuario"></h:outputText></h3>
             <h:form><br/>
-                Rut <h:inputText value="#{loginBean.nombre}"></h:inputText><br/>
+                Rut: <h:inputText value="#{loginBean.nombre}"></h:inputText><br/>
                 Password <h:inputText value="#{loginBean.password}"></h:inputText><br/>
-                <h:commandLink value="Ingresar" action="#{loginBean.Login()}"></h:commandLink>
-                <br/>
+                Admin: <h:selectBooleanCheckbox value="#{loginBean.doAdmin}" ></h:selectBooleanCheckbox>
+                <h:commandLink value="Crear" action="#{loginBean.createUsuario()}"></h:commandLink>
+
             </h:form>
-            <h:link outcome="/CrearUsuario" value="Crear Usuario"></h:link><br />
         </ui:define>
 
     </ui:composition>

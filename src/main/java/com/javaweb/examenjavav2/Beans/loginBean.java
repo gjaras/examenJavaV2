@@ -21,6 +21,9 @@ import javax.inject.Named;
 public class loginBean implements Serializable{
     private String nombre ;
     private String password;
+    private String message;
+    private String isAdmin;
+    private boolean doAdmin;
 
     public String Login(){
         Usuario usu = new Usuario(getNombre(),getPassword());
@@ -32,10 +35,22 @@ public class loginBean implements Serializable{
         }else{
             setNombre("");
             setPassword("");
-            System.out.println("User Name or Password are Incorrect");
+            setMessage("User Name or Password are Incorrect");
             return "Login";
         }
         
+    }
+    
+    public String createUsuario(){
+        usuarioDAO usd = new usuarioDAO();
+        Usuario u = new Usuario(getNombre(), getPassword(), isDoAdmin());
+        if(usd.createUsuario(u)){
+            setMessage("Usuario fue creado");
+        }else{
+            setMessage("Usuario no fue creado");
+        }
+        
+        return "Login";
     }
  
     public String getNombre() {
@@ -49,6 +64,48 @@ public class loginBean implements Serializable{
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    /**
+     * @return the isAdmin
+     */
+    public String getIsAdmin() {
+        return isAdmin;
+    }
+
+    /**
+     * @param isAdmin the isAdmin to set
+     */
+    public void setIsAdmin(String isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    /**
+     * @return the doAdmin
+     */
+    public boolean isDoAdmin() {
+        return doAdmin;
+    }
+
+    /**
+     * @param doAdmin the doAdmin to set
+     */
+    public void setDoAdmin(boolean doAdmin) {
+        this.doAdmin = doAdmin;
     }
     
     

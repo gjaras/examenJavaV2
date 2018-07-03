@@ -6,28 +6,25 @@
 package com.javaweb.examenjavav2.Beans;
 
 import com.javaweb.examenjavav2.DAO.postulacionDAO;
+import com.javaweb.examenjavav2.DAO.usuarioDAO;
 import com.javaweb.examenjavav2.POJOS.Comuna;
 import com.javaweb.examenjavav2.POJOS.Educacion;
 import com.javaweb.examenjavav2.POJOS.Estadocivil;
 import com.javaweb.examenjavav2.POJOS.Postulante;
-import com.javaweb.examenjavav2.POJOS.Usuario;
 import com.javaweb.examenjavav2.POJOS.Renta;
+import com.javaweb.examenjavav2.POJOS.Usuario;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 
 @Named(value="postulacionBean")
 @SessionScoped
-
 public class postulacionBean implements Serializable{
 
    
@@ -48,21 +45,24 @@ public class postulacionBean implements Serializable{
      private String postulanteEmail;
      private String postulanteDireccion;
      private int postulanteSueldo;
-     private char postulanteEnfermedad;
+     private boolean postulanteEnfermedad;
+     private int usuarioId;
      
     //Agregar Postulante
     public String addPostulante() throws ParseException{
-        Postulante p = new Postulante (getPostulanteRut(), getComuna(), getEducacion(), getEstadocivil(), getRenta(),getPostulanteDv(), getPostulanteNombre(), getPostulanteApepa(), getPostulanteApema(), getPostulanteFecnac(), getPostulanteSexo(), getPostulanteHijos(), getPostulanteTelefono(), getPostulanteEmail(), getPostulanteDireccion(), getPostulanteSueldo(), getPostulanteEnfermedad());
+        Usuario  us = new Usuario(getUsuarioId());
+        Postulante p = new Postulante (getPostulanteRut(), getComuna(), getEducacion(), getEstadocivil(), getRenta(), us,getPostulanteDv(), getPostulanteNombre(), getPostulanteApepa(), getPostulanteApema(), getPostulanteFecnac(), getPostulanteSexo(), getPostulanteHijos(), getPostulanteTelefono(), getPostulanteEmail(), getPostulanteDireccion(), getPostulanteSueldo(), getPostulanteEnfermedad() ? 's' : 'n');
         postulacionDAO pd = new postulacionDAO();
         pd.addPostulante(p);
         return "ListPostulante";
     }
     //Update Postulante
-    public void updatePostulante() throws ParseException {
-        ///////////////////////////////String postulanteRut, Comuna comuna, Educacion educacion, Estadocivil estadocivil, Renta renta, char postulanteDv, String postulanteApepa, String postulanteApema, Date postulanteFecnac, char postulanteSexo, int postulanteHijos, int postulanteTelefono, String postulanteEmail, String postulanteDireccion, int postulanteSueldo, char postulanteEnfermedad
-        Postulante p = new Postulante (getPostulanteRut(), getComuna(), getEducacion(), getEstadocivil(), getRenta(),getPostulanteDv(), getPostulanteNombre(), getPostulanteApepa(), getPostulanteApema(), getPostulanteFecnac(), getPostulanteSexo(), getPostulanteHijos(), getPostulanteTelefono(), getPostulanteEmail(), getPostulanteDireccion(), getPostulanteSueldo(), getPostulanteEnfermedad());
+    public String updatePostulante() throws ParseException {
+        Usuario  us = new Usuario(getUsuarioId());
+        Postulante p = new Postulante (getPostulanteRut(), getComuna(), getEducacion(), getEstadocivil(), getRenta(), us,getPostulanteDv(), getPostulanteNombre(), getPostulanteApepa(), getPostulanteApema(), getPostulanteFecnac(), getPostulanteSexo(), getPostulanteHijos(), getPostulanteTelefono(), getPostulanteEmail(), getPostulanteDireccion(), getPostulanteSueldo(), getPostulanteEnfermedad() ? 's' : 'n');
         postulacionDAO pd = new postulacionDAO();
         pd.updatePostulante(p);
+        return "ListPostulante";
     }
 ////GET
     
@@ -106,8 +106,7 @@ public class postulacionBean implements Serializable{
         int index = 0;
         for(Postulante p : ptl){
             SelectItem agregar = new SelectItem();
-            String json = "{\"postulante_rut\":\""+p.getPostulanteRut()+"\",\"postulante_nombre\":\""+p.getPostulanteNombre()+"\",\"postulante_apepa\":\""+p.getPostulanteApepa()+"\",\"postulante_apema\":\""+p.getPostulanteApema()+"\",\"postulante_fecnac\":\""+p.getPostulanteFecnac()+"\",\"postulante_sexo\":\""+p.getPostulanteSexo()+"\",\"postulante_hijos\":\""+p.getPostulanteHijos()+"\",\"postulante_telefono\":\""+p.getPostulanteTelefono()+"\",\"postulante_email\":\""+p.getPostulanteEmail()+"\",\"postulante_direccion\":\""+p.getPostulanteDireccion()+"\",\"postulante_sueldo\":\""+p.getPostulanteSueldo()+"\",\"postulante_enfermedad\":\""+p.getPostulanteEnfermedad()+"\",\"educacion_educacion_id\":\""+p.getEducacion()+"\",\"estadocivil_estadocivil_id\":\""+p.getEstadocivil()+"\",\"comuna_comuna_id\":\""+p.getComuna()+"\",\"renta_renta_id\":\""+p.getRenta()+"\"}";
-            agregar.setValue(json);
+            agregar.setValue(p);
             agregar.setLabel(p.getPostulanteNombre());
             ret[index] = agregar;
             index++;
@@ -124,8 +123,7 @@ public class postulacionBean implements Serializable{
         int index = 0;
         for(Comuna p : ptl){
             SelectItem agregar = new SelectItem();
-            String json = "{\"comuna_id\":\""+p.getComunaId()+"\",\"comuna_nombre\":\""+p.getComunaNombre()+"\"}";
-            agregar.setValue(json);
+            agregar.setValue(p);
             agregar.setLabel(p.getComunaNombre());
             ret[index] = agregar;
             index++;
@@ -141,8 +139,7 @@ public class postulacionBean implements Serializable{
         int index = 0;
         for(Educacion p : ptl){
             SelectItem agregar = new SelectItem();
-            String json = "{\"educacion_id\":\""+p.getEducacionId()+"\",\"educacion_nombre\":\""+p.getEducacionTipo()+"\"}";
-            agregar.setValue(json);
+            agregar.setValue(p);
             agregar.setLabel(p.getEducacionTipo());
             ret[index] = agregar;
             index++;
@@ -157,8 +154,7 @@ public class postulacionBean implements Serializable{
         int index = 0;
         for(Estadocivil p : ptl){
             SelectItem agregar = new SelectItem();
-            String json = "{\"estadocivil_id\":\""+p.getEstadocivilId()+"\",\"estadocivil_tipo\":\""+p.getEstadocivilTipo()+"\"}";
-            agregar.setValue(json);
+            agregar.setValue(p);
             agregar.setLabel(p.getEstadocivilTipo());
             ret[index] = agregar;
             index++;
@@ -172,8 +168,7 @@ public class postulacionBean implements Serializable{
         int index = 0;
         for(Renta p : ptl){
             SelectItem agregar = new SelectItem();
-            String json = "{\"renta_id\":\""+p.getRentaId()+"\",\"renta_tipo\":\""+p.getRentaTipo()+"\"}";
-            agregar.setValue(json);
+            agregar.setValue(p);
             agregar.setLabel(p.getRentaTipo());
             ret[index] = agregar;
             index++;
@@ -242,14 +237,6 @@ public class postulacionBean implements Serializable{
 
     public void setRenta(Renta renta) {
         this.renta = renta;
-    }
-
-    public String getPostulanteNombre() {
-        return postulanteNombre;
-    }
-
-    public void setPostulanteNombre(String postulanteNombre) {
-        this.postulanteNombre = postulanteNombre;
     }
 
     public String getPostulanteApepa() {
@@ -324,12 +311,40 @@ public class postulacionBean implements Serializable{
         this.postulanteSueldo = postulanteSueldo;
     }
 
-    public char getPostulanteEnfermedad() {
+    public boolean getPostulanteEnfermedad() {
         return postulanteEnfermedad;
     }
 
-    public void setPostulanteEnfermedad(char postulanteEnfermedad) {
+    public void setPostulanteEnfermedad(boolean postulanteEnfermedad) {
         this.postulanteEnfermedad = postulanteEnfermedad;
+    }
+
+    /**
+     * @return the postulanteNombre
+     */
+    public String getPostulanteNombre() {
+        return postulanteNombre;
+    }
+
+    /**
+     * @param postulanteNombre the postulanteNombre to set
+     */
+    public void setPostulanteNombre(String postulanteNombre) {
+        this.postulanteNombre = postulanteNombre;
+    }
+
+    /**
+     * @return the usuarioId
+     */
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+
+    /**
+     * @param usuarioId the usuarioId to set
+     */
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
 

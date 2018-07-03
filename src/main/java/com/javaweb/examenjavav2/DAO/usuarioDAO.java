@@ -24,6 +24,21 @@ public class usuarioDAO {
         s.close();
         return !(retorno == null);
     }
+    
+    public boolean createUsuario(Usuario usuario){
+        try{
+            Transaction tx =null;
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            tx= s.beginTransaction();
+            s.save(usuario);
+            s.getTransaction().commit();
+            s.flush();
+            s.close();
+        }catch(Exception e){
+            return false;
+        }
+        return true;
+    }
 
 
 

@@ -41,10 +41,10 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="postulacion"/>
-  <table-filter match-name="usuario"/>
   <table-filter match-name="renta"/>
   <table-filter match-name="educacion"/>
-  <table-filter match-name="comuna"/>
-  <table-filter match-name="postulante"/>
   <table-filter match-name="estadocivil"/>
+  <table-filter match-name="comuna"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="postulante"/>
 </hibernate-reverse-engineering>
