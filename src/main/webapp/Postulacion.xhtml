@@ -2,17 +2,76 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      >
     <ui:composition template="/template.xhtml">
         <ui:define name="sidebar"></ui:define>
         <ui:define name="title">Postulacion trabajo</ui:define>
         <ui:define name="body">
             <h:form id="postulaForm">
                 Rut Postulante:<h:inputText value="#{postulacionBean.postulanteRut}"></h:inputText>-<h:inputText size="1" value="#{postulacionBean.postulanteDv}"></h:inputText><br/>
-                Nombre :<h:inputText value="#{postulacionBean.nombre}"></h:inputText><br/>
-                Apellido Paterno :<h:inputText value="#{postulacionBean.appPat}"></h:inputText><br/>
-                Apellido Materno :<h:inputText value="#{postulacionBean.appMat}"></h:inputText><br/>
-                Fecha de Nacimiento: <h:inputText value="#{postulacionBean.fecNac}" id="datepicker"></h:inputText><br/>
+                Nombre :<h:inputText value="#{postulacionBean.postulanteNombre}"></h:inputText><br/>
+                Apellido Paterno :<h:inputText value="#{postulacionBean.postulanteApepa}"></h:inputText><br/>
+                Apellido Materno :<h:inputText value="#{postulacionBean.postulanteApema}"></h:inputText><br/>
+                Fecha de Nacimiento: <h:inputText value="#{postulacionBean.postulanteFecnac}" id="datepicker"></h:inputText><br/>
+                Sexo :<h:selectOneRadio value = "#{postulacionBean.postulanteSexo}"> 
+                    <f:selectItem itemValue = "F " itemLabel = "F" />
+                    <f:selectItem itemValue = "M " itemLabel = "M" />
+                </h:selectOneRadio><br/>
+                
+                Estado Civil :<h:selectOneMenu id="selMenu2">
+                    <f:selectItems value="#{postulacionBean.listEstadoCivil()}"/>
+                </h:selectOneMenu>
+                <br/>
+                
+                
+                 
+                Hijos : <h:selectBooleanCheckbox value = "#postulacionBean.postulanteEnfermedad" id = "chkRememberMe" /> 
+                 <h:inputText id="hijos" value="" maxlength="2" converter="javax.faces.Integer" disabled="true"/>
+                <!--Si<h:selectBooleanCheckbox id="existing" value="" onclick="esto()"/>
+                <h:inputText id="hijos" value="#postulacionBean.postulanteHijos()}" maxlength="4" converter="javax.faces.Integer" disabled="true"/>
+
+                <h:inputText  type="number" id="hijos" min="0" max="15" step="1" value="#postulacionBean.postulanteHijos()}" disabled="true"/> <br/>
+                
+                 -->
+    	  <br/>
+                
+
+            
+            Telefono :<h:inputText value="#{postulacionBean.postulanteTelefono}"></h:inputText><br/>
+            Email :<h:inputText value="#{postulacionBean.postulanteEmail}"  a:placeholder="Ej:tucorreo@dominio.com" ></h:inputText><br/>
+            
+            Direccion :<h:inputText value="#{postulacionBean.postulanteDireccion}"></h:inputText><br/>
+            Comuna :<h:selectOneMenu id="selMenu">
+                <f:selectItems value="#{postulacionBean.listComuna()}"/>
+            </h:selectOneMenu>
+            <br/>
+            
+            Educacion: 
+            <h:selectOneMenu id="selMenu3">
+                <f:selectItems value="#{postulacionBean.listEducacion()}"/>
+            </h:selectOneMenu>
+            <br/>
+            Renta: 
+            <h:selectOneMenu id="selMenu4">
+                <f:selectItems value="#{postulacionBean.listRenta()}"/>
+            </h:selectOneMenu>
+            <br/>   
+            Sueldo Liquido :<h:inputText value="#{postulacionBean.postulanteSueldo}"></h:inputText><br/>
+            
+            <br/>
+            
+            Padece enfermedad enfermedad cronica: <h:selectBooleanCheckbox value = "#postulacionBean.postulanteEnfermedad" id = "chkRememberMe" />
+            <h:selectManyCheckbox value="#{postulacionBean.postulanteEnfermedad}">
+   			<f:selectItems value="t" />
+            </h:selectManyCheckbox>
+                 
+            
+            
+            
+            
                 <h:commandLink value="Grabar" action="#{postulacionBean.insertPostulacion()}"></h:commandLink>
             </h:form>
             <script>
@@ -20,9 +79,9 @@
                     $("#postulaForm\\:datepicker").datepicker()
                 });
                 function esto() {
-                    document.getElementById("hijos").disabled = false
+                    document.getElementById(hijos).disabled = false
                 }
-            </script>
+            </script>3
             <h:link outcome="/Inicio" value="Menu Principal"></h:link>
         </ui:define>
     </ui:composition>

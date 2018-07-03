@@ -5,107 +5,70 @@
  */
 package com.javaweb.examenjavav2.Beans;
 
+import com.javaweb.examenjavav2.DAO.educacionDAO;
+import com.javaweb.examenjavav2.POJOS.Comuna;
+import com.javaweb.examenjavav2.POJOS.Educacion;
+import com.javaweb.examenjavav2.POJOS.Estadocivil;
+import com.javaweb.examenjavav2.POJOS.Postulante;
+import com.javaweb.examenjavav2.POJOS.Usuario;
+import com.javaweb.examenjavav2.POJOS.Renta;
+
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-@Named(value="postulacionBean")
+@Named(value="educacionBean")
 @SessionScoped
-public class postulacionBean implements Serializable{
 
-     private String postulanteRut;
-     private String postulanteDv;
-     private String nombre;
-     private String appPat;
-     private String appMat;
-     private String fecNac;
+public class educacionBean implements Serializable {
+
+     private int educacionId;
+     private String educacionTipo;
      
-     public String insertPostulacion(){
-         return "";
-     }
-
-    /**
-     * @return the postulanteRut
-     */
-    public String getPostulanteRut() {
-        return postulanteRut;
+    public educacionBean() {
+    }
+    
+    public void addEducacion(){
+        Educacion educacion=new Educacion(getEducacionId(),getEducacionTipo());
+        educacionDAO educacionDAO=new educacionDAO();
+        educacionDAO.addEducacion(educacion);
+    }
+//    
+//    public void updateComuna(){
+//        Comuna comuna=new Comuna(getComunaId(),getComunaNombre());
+//        comunaDAO comunaDAO=new comunaDAO();
+//        comunaDAO.;
+//    }
+    public void deleteEducacion(){
+        Educacion educacion=new Educacion(getEducacionId(),getEducacionTipo());
+        educacionDAO educacionDAO=new educacionDAO();
+        educacionDAO.deleteEducacion(getEducacionId(),getEducacionTipo());
+        educacionId=0;
+        educacionTipo=null;
+    }
+    
+    public int getEducacionId() {
+        return educacionId;
     }
 
-    /**
-     * @param postulanteRut the postulanteRut to set
-     */
-    public void setPostulanteRut(String postulanteRut) {
-        this.postulanteRut = postulanteRut;
+    public void setEducacionId(int educacionId) {
+        this.educacionId = educacionId;
     }
 
-    /**
-     * @return the postulanteDv
-     */
-    public String getPostulanteDv() {
-        return postulanteDv;
+    public String getEducacionTipo() {
+        return educacionTipo;
     }
 
-    /**
-     * @param postulanteDv the postulanteDv to set
-     */
-    public void setPostulanteDv(String postulanteDv) {
-        this.postulanteDv = postulanteDv;
+    public void setEducacionTipo(String educacionTipo) {
+        this.educacionTipo = educacionTipo;
     }
-
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    /**
-     * @return the appPat
-     */
-    public String getAppPat() {
-        return appPat;
-    }
-
-    /**
-     * @param appPat the appPat to set
-     */
-    public void setAppPat(String appPat) {
-        this.appPat = appPat;
-    }
-
-    /**
-     * @return the appMat
-     */
-    public String getAppMat() {
-        return appMat;
-    }
-
-    /**
-     * @param appMat the appMat to set
-     */
-    public void setAppMat(String appMat) {
-        this.appMat = appMat;
-    }
-
-    /**
-     * @return the fecNac
-     */
-    public String getFecNac() {
-        return fecNac;
-    }
-
-    /**
-     * @param fecNac the fecNac to set
-     */
-    public void setFecNac(String fecNac) {
-        this.fecNac = fecNac;
-    }
-
+    
 }

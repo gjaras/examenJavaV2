@@ -5,107 +5,65 @@
  */
 package com.javaweb.examenjavav2.Beans;
 
+import com.javaweb.examenjavav2.DAO.comunaDAO;
+import com.javaweb.examenjavav2.POJOS.Comuna;
+import com.javaweb.examenjavav2.POJOS.Educacion;
+import com.javaweb.examenjavav2.POJOS.Estadocivil;
+import com.javaweb.examenjavav2.POJOS.Postulante;
+import com.javaweb.examenjavav2.POJOS.Usuario;
+import com.javaweb.examenjavav2.POJOS.Renta;
+
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-@Named(value="postulacionBean")
+@Named(value="comunaBean")
 @SessionScoped
-public class postulacionBean implements Serializable{
 
-     private String postulanteRut;
-     private String postulanteDv;
-     private String nombre;
-     private String appPat;
-     private String appMat;
-     private String fecNac;
+public class comunaBean implements Serializable {
+
+     private int comunaId;
+     private String comunaNombre;
      
-     public String insertPostulacion(){
-         return "";
-     }
-
-    /**
-     * @return the postulanteRut
-     */
-    public String getPostulanteRut() {
-        return postulanteRut;
+    public comunaBean() {
     }
-
-    /**
-     * @param postulanteRut the postulanteRut to set
-     */
-    public void setPostulanteRut(String postulanteRut) {
-        this.postulanteRut = postulanteRut;
+    
+    public void addComuna(){
+        Comuna comuna=new Comuna(getComunaId(),getComunaNombre());
+        comunaDAO comunaDAO=new comunaDAO();
+        comunaDAO.addComuna(comuna);
     }
-
-    /**
-     * @return the postulanteDv
-     */
-    public String getPostulanteDv() {
-        return postulanteDv;
+//    
+//    public void updateComuna(){
+//        Comuna comuna=new Comuna(getComunaId(),getComunaNombre());
+//        comunaDAO comunaDAO=new comunaDAO();
+//        comunaDAO.;
+//    }
+    public void deleteComuna(){
+        Comuna comuna=new Comuna(getComunaId(),getComunaNombre());
+        comunaDAO comunaDAO=new comunaDAO();
+        comunaDAO.deleteComuna(comuna.getComunaId(),comuna.getComunaNombre());
+        comunaId=0;
+        comunaNombre=null;
     }
-
-    /**
-     * @param postulanteDv the postulanteDv to set
-     */
-    public void setPostulanteDv(String postulanteDv) {
-        this.postulanteDv = postulanteDv;
+    public int getComunaId() {
+        return comunaId;
     }
-
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
+    public void setComunaId(int comunaId) {
+        this.comunaId = comunaId;
     }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getComunaNombre() {
+        return comunaNombre;
     }
-
-    /**
-     * @return the appPat
-     */
-    public String getAppPat() {
-        return appPat;
+    public void setComunaNombre(String comunaNombre) {
+        this.comunaNombre = comunaNombre;
     }
-
-    /**
-     * @param appPat the appPat to set
-     */
-    public void setAppPat(String appPat) {
-        this.appPat = appPat;
-    }
-
-    /**
-     * @return the appMat
-     */
-    public String getAppMat() {
-        return appMat;
-    }
-
-    /**
-     * @param appMat the appMat to set
-     */
-    public void setAppMat(String appMat) {
-        this.appMat = appMat;
-    }
-
-    /**
-     * @return the fecNac
-     */
-    public String getFecNac() {
-        return fecNac;
-    }
-
-    /**
-     * @param fecNac the fecNac to set
-     */
-    public void setFecNac(String fecNac) {
-        this.fecNac = fecNac;
-    }
-
 }

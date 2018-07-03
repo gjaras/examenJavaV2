@@ -77,7 +77,7 @@ public class postulacionDAO {
         Transaction tx =null;
         Session s = HibernateUtil.getSessionFactory().openSession();
         tx= s.beginTransaction();
-        Query q = s.createQuery("from Venta");
+        Query q = s.createQuery("from Renta");
         List<Renta> retorno = q.list();
         s.flush();
         s.close();
